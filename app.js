@@ -8,7 +8,6 @@ const path = require("path")
 const app = express()
 const port = 3000
 
-app.set("layout", "pages/layouts/basiclayout")
 app.set("view engine", "ejs")
 app.use(morgan("dev")) // to get morgan working
 
@@ -21,7 +20,7 @@ app.use(expressLayouts)
 
 // files created by us which are used by our app
 
-
+app.set("layout", "pages/layouts/basiclayout")
 
 // the routes
 
