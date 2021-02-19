@@ -11,3 +11,7 @@ app.use(morgan('dev'))
 
 app.set('views', path.join(__dirname, 'views')) // was in Harry's project (?)
 app.use('/static', express.static(path.join(__dirname, 'public')))
+
+app.listen(3000, () => {
+  console.log('listening on 3000')
+})
