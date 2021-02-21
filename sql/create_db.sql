@@ -1,0 +1,3 @@
+CREATE DATABASE project4db;
+CREATE USER project4admin WITH ENCRYPTED PASSWORD 'Project4';
+GRANT ALL PRIVILEGES ON DATABASE project4db TO project4admin;
