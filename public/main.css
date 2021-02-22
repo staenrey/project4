@@ -37,5 +37,14 @@ h2 {
     font-family: inherit;
     font-size: inherit;
     padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+}
 
+.two-sections {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+.section-right {
+    padding-left: 5rem;
 }

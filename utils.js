@@ -1,0 +1,1 @@
+module.exports.weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]

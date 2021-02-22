@@ -20,12 +20,21 @@ app.use(expressLayouts)
 // files created by us which are used by our app
 
 app.set("layout", "pages/layouts/basiclayout")
+const utils = require("./utils.js")
+const database = require('./database')
 
 // the routes
 
 // 1) homepage
+
 app.get("/", (req, res) => {
-  res.render("pages/home")
+  database.any("SELECT * FROM schedules JOIN users ON users.id = schedules.user_id;") // joins 2 tables and finds corresponding user for each schedule
+      .then((joined_array) => {
+          res.render("pages/home", {schedules: joined_array, weekDays: utils.weekDays})
+      })
+      .catch(error => {
+          res.send(error)
+      })
 })
 
 // 2) login
@@ -36,8 +45,8 @@ app.get("/login", (req, res) => {
 // 3) logout route (no page)
 
 // 4) employee page
-app.get("/addschedule", (req, res) => {
-  res.render("pages/addschedule")
+app.get("/employee", (req, res) => {
+  res.render("pages/employee")
 })
 
 // 5) schedule management
