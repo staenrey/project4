@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS schedules (
   sched_id SERIAL PRIMARY KEY,
   id_user SERIAL NOT NULL,
-  day_of_week INT(1) NOT NULL,
+  day_of_week SMALLINT NOT NULL,
   start_time TIME NOT NULL,
   end_time TIME NOT NULL, 
-  FOREIGN KEY (id_user) REFERENCES users (user_id) ON DELETE CASCADE;
-)
+  FOREIGN KEY (id_user) REFERENCES users (user_id) ON DELETE CASCADE
+);
