@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
           res.render("pages/home", {schedules: joined_array, weekDays: utils.weekDays})
       })
       .catch(error => {
-          res.send(error)
+          res.send({error: error, stack: error.stack})
       })
 })
 
@@ -58,6 +58,7 @@ app.get("/addschedule", (req, res) => {
 app.get("/signup", (req, res) => {
   res.render("pages/signup")
 })
+
 
 // starting the server
 
