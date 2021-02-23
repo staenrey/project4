@@ -1,6 +1,6 @@
-#This is project4 from Incode 
+# This is project4 from Incode 
 
-#Participants:
+# Participants:
 
 Stan
 Jake
