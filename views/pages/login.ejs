@@ -1,18 +1,26 @@
-<h1>Login page</h1>
-
-
-<form class="add-form" method="POST" action="/">
-
-    <label>
-        E-mail *
-        <input type="email" name="email" required>
-    </label>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
     
-    <label>
-        Password *
-        <input type="password" name="password" required>
-    </label>
-    
-    <input type="submit" value="Submit">
-    
-</form>
+    <h1>Login Page</h1>
+
+    <form action="/login" method="POST" class="add-form" >
+        <div>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+        </div>
+            <input type="submit" value="Register">
+        </div>
+        <p>Not registered!<a href="/signup">Register here</a></p>
+
+    </form>
+</body>
+</html>

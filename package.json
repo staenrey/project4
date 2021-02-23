@@ -10,6 +10,7 @@
   "author": "staenrey and jake",
   "license": "ISC",
   "dependencies": {
+    "crypto": "^1.0.1",
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",

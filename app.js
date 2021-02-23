@@ -4,6 +4,7 @@ const express = require("express")
 const morgan = require("morgan")
 const expressLayouts = require("express-ejs-layouts")
 const path = require("path")
+const crypto = require("crypto")
 
 const app = express()
 const port = 3000
@@ -59,6 +60,41 @@ app.get("/addschedule", (req, res) => {
 app.get("/signup", (req, res) => {
   res.render("pages/signup")
 })
+
+
+// form validation
+app.post("/signup", async (req,res) => {
+  let { name, surname, email, password, password2 } = req.body;
+
+  console.log({name, surname, email, password, password2 });
+
+  let errors = [];
+
+  if (!name || !surname || !email || !password || !password2){
+    errors.push({ message: "Please enter all fields" });
+  }
+
+  if (password.length < 6) {
+    errors.push({ message: "Password should be at least 6 characters" });
+  }
+
+  if(password != password2) {
+    errors.push({ message: "Passwords do not match!" });
+  }
+
+  if (errors.length > 0) {
+    res.render("pages/signup", { errors });
+  } else {
+    //form validation has passed 
+
+    var mykey = crypto.createCipher('aes-128-cbc', 'password');
+    var mystr = mykey.update('abc', 'utf8', 'hex')
+    mystr += mykey.final('hex');
+    console.log(mystr);
+
+    
+  }
+});
 
 
 // starting the server
