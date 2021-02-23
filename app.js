@@ -33,8 +33,12 @@ app.get("/", (req, res) => {
           res.render("pages/home", {schedules: joined_array, weekDays: utils.weekDays})
       })
       .catch(error => {
-          res.send(error)
-          console.log("Error:", error) // added a console log to get specific error message
+<<<<<<< HEAD
+        res.send({error: error, stack: error.stack})
+        console.log("Error:", error) // added a console log to get specific error message
+=======
+          
+>>>>>>> e610457246948abcb08590ed764a4fff229ee00f
       })
 })
 
@@ -59,6 +63,7 @@ app.get("/addschedule", (req, res) => {
 app.get("/signup", (req, res) => {
   res.render("pages/signup")
 })
+
 
 // starting the server
 

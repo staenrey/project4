@@ -30,3 +30,5 @@ CREATE TABLE IF NOT EXISTS schedules (
 
 -- values (1, 1, '10:00', '12:00');
 -- values (2, 2, '14:00', '16:00');
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO project4admin;

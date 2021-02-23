@@ -10,7 +10,7 @@ const connection = {
     host: 'localhost', // 'localhost' is the default;
     port: 5432, // 5432 is the default;
     database: 'project4db',
-    user: 'project4admin',
+    user: 'project4db',
     password: 'Project4'
 };// database connection object, we store in a variable 'connection' the info
 
