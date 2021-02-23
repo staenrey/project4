@@ -8,4 +8,10 @@ INSERT INTO schedules (user_id, day_of_week, start_time, end_time)
 VALUES (1, 1, '10:00', '12:00');
 
 INSERT INTO schedules (user_id, day_of_week, start_time, end_time)
+VALUES (1, 2, '10:00', '12:00');
+
+INSERT INTO schedules (user_id, day_of_week, start_time, end_time)
+VALUES (1, 3, '10:00', '12:00');
+
+INSERT INTO schedules (user_id, day_of_week, start_time, end_time)
 VALUES (2, 2, '14:00', '16:00');
