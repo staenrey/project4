@@ -6,7 +6,10 @@ body {
     background-color: rgb(182, 174, 153);
     color: black;
     margin: 0 auto;
-    padding: 0 1rem;
+}
+
+.main-wrapper {
+    margin: 0 0 0 2rem;
     max-width: 1200px;
 }
 
@@ -60,13 +63,14 @@ header {
 
 .header-logo {
     height: 1.8rem;
-    padding: 0.5rem 0rem 0.5rem 0rem;
+    padding: 0.5rem 0rem 0.5rem 0.5rem;
 }
 
 .top-navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .top-navigation a {
@@ -76,7 +80,6 @@ header {
 }
 
 .normal-button {
-        
     background-color: #888888;
-    
+    margin: 0.5rem;
 }
