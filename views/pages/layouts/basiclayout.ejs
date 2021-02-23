@@ -4,13 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <title></title>
   <link rel="stylesheet" href="/static/main.css">
 </head>
 
 <body>
-  <%- body %>
+
+  <header>
+    <div class="header-left">
+      <img class="header-logo" src="/static/full_logo_white.png" alt="Mr. Coffee Logo">
+    </div>
+    <nav class="top-navigation">
+      <a href="/">Home</a>
+      <a href="/addschedule">Schedule management</a>
+      <button class="normal-button">Log out</button>
+    </nav>
+  </header>
+  </div>
+  <div class="main-wrapper">
+    <%- body %>
+  </div>
 </body>
 
 </html>

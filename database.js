@@ -2,6 +2,10 @@
 
 const pgp = require("pg-promise")() // require('pg-promise') returns a function that we immediately call, and store the result in a pgp var
 
+// const { user, password, port } = require("./config")
+
+// const connection = `postgres://${user}${password}@localhost:${port}/project4db`
+
 const connection = {
     host: 'localhost', // 'localhost' is the default;
     port: 5432, // 5432 is the default;
@@ -9,6 +13,8 @@ const connection = {
     user: 'project4admin',
     password: 'Project4'
 };// database connection object, we store in a variable 'connection' the info
+
+
 
 const db = pgp(connection) // var db equals to a result of a function pgp that processed a connection var
 
