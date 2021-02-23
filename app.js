@@ -47,7 +47,7 @@ app.get("/login", (req, res) => {
 
 // 4) employee page
 app.get("/employee/:userId(\\d+)", (req, res) => { // To have more control over the exact string that can be matched by a route parameter, you can append a regular expression in parentheses (())
-  database.any(`SELECT * FROM schedules JOIN users ON users.id = schedules.user_id WHERE schedules.user_id = ${req.params.userId};`)
+  database.any(`SELECT * FROM schedules JOIN users ON users.id = schedules.user_id WHERE schedules.user_id = $1;`, req.params.userId) // use $1 to ensure that req.params.userId is an integer (prevents sql injection)
     .then((user_profile) => {
       res.render("pages/employee", {userID: req.params.userId, schedules: user_profile, weekDays: utils.weekDays})
     })
