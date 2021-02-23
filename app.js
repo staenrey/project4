@@ -33,7 +33,8 @@ app.get("/", (req, res) => {
           res.render("pages/home", {schedules: joined_array, weekDays: utils.weekDays})
       })
       .catch(error => {
-          res.send({error: error, stack: error.stack})
+        res.send({error: error, stack: error.stack})
+        console.log("Error:", error) // added a console log to get specific error message
       })
 })
 
