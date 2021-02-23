@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
       })
       .catch(error => {
           res.send(error)
+          console.log("Error:", error) // added a console log to get specific error message
       })
 })
 
