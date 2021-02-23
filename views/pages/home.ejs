@@ -4,7 +4,7 @@
     <% for (let i = 0; i < schedules.length; i++) { %>
         <li>
             <%=  %>
-            <a href="/users/<%= schedules[i].user_id %>"><%= schedules[i].first_name + " " + schedules[i].surname %></a>
+            <a href="/employee/<%= schedules[i].user_id %>"><%= schedules[i].first_name + " " + schedules[i].surname %></a>
             <%= weekDays[schedules[i].day_of_week - 1] %>
             <%= schedules[i].start_time %>
             &ndash;
