@@ -28,7 +28,7 @@ Here be user profile info
 
         here will be all user's schedules
 
-        <% if (schedules[0].day === null) { %> <!-- Still trying to figure out the exact = sign to use because === will not return the p tag below and == will return the p tag in all users -->
+        <% if (schedules[0].day_of_week === null) { %>
             <p>This user has no schedules</p>
         <% } else { %>
             <table>
@@ -39,7 +39,7 @@ Here be user profile info
                 </tr>
                 <% for (i = 0; i < schedules.length; i++) { %>
                     <tr>
-                        <td><%= schedules[i].day %></td>
+                        <td><%= schedules[i].day_of_week %></td>
                         <td><%= schedules[i].start_time %></td>
                         <td><%= schedules[i].end_time %></td>
                     </tr>
