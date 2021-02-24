@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon -e js,ejs,css app.js"
   },
-  "author": "staenrey and jake",
+  "author": "staenrey, jake, and ahmad",
   "license": "ISC",
   "dependencies": {
     "crypto": "^1.0.1",
