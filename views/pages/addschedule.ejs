@@ -1,52 +1,64 @@
-<h1>Schedule management</h1>
-
-<div class="two-sections">
-
-    <div class="section_left">
-
-        <h3>
-            Add new schedule
-        </h3>
-
-        <form class="add-form" method="POST" action="/new">
-    
-            <label>
-                Day of the week *
-                <select name="day_of_week" required>
-                    <option value=1>Monday</option>
-                    <option value=2>Tuesday</option>
-                    <option value=3>Wednesday</option>
-                    <option value=4>Thursday</option>
-                    <option value=5>Friday</option>
-                    <option value=6>Saturday</option>
-                    <option value=7>Sunday</option>
-                </select>
-            </label>
-            
-
-            <label>
-                Start at *
-                <input type="time" name="start_time" required>
-            </label>
-            
-
-            <label>
-                End at *
-                <input type="time" name="end_time" required>
-            </label>
-            
-
-            <input type="submit" value="Submit">
-        
-        </form>
+<header>
+    <div class="header-left">
+        <img class="header-logo" src="/static/full_logo_white.png" alt="Mr. Coffee Logo">
     </div>
+    <nav class="top-navigation">
+        <a href="/">Home</a>
+        <a href="/addschedule">Schedule management</a>
+        <button class="normal-button">Log out</button>
+    </nav>
+</header>
+<div class="main-wrapper">
+    <h1>Schedule management for <%= current_user.first_name + " " + current_user.surname %></h1>
 
-    <div class="section-right">
+    <div class="two-sections">
 
-        <h3>
-            Existing schedules
-        </h3>
+        <div class="section_left">
 
-        here will be all user's schedules
+            <h3>
+                Add new schedule
+            </h3>
+
+            <form class="add-form" method="POST" action="/new">
+
+                <label>
+                    Day of the week *
+                    <select name="day_of_week" required>
+                        <option value=1>Monday</option>
+                        <option value=2>Tuesday</option>
+                        <option value=3>Wednesday</option>
+                        <option value=4>Thursday</option>
+                        <option value=5>Friday</option>
+                        <option value=6>Saturday</option>
+                        <option value=7>Sunday</option>
+                    </select>
+                </label>
+
+
+                <label>
+                    Start at *
+                    <input type="time" name="start_time" required>
+                </label>
+
+
+                <label>
+                    End at *
+                    <input type="time" name="end_time" required>
+                </label>
+
+
+                <input type="submit" value="Submit">
+
+            </form>
+        </div>
+
+        <div class="section-right">
+
+            <h3>
+                Existing schedules
+            </h3>
+
+            here will be all user's schedules
+        </div>
     </div>
 </div>

@@ -1,18 +1,29 @@
+<header>
+    <div class="header-left">
+        <img class="header-logo" src="/static/full_logo_white.png" alt="Mr. Coffee Logo">
+    </div>
+</header>
+
+<div class="main-wrapper">
+
     <h1>Registration Page</h1>
 
     <ul>
-        <% if (typeof errors != 'undefined') { %>
-            <% errors.forEach(error => { %>
-            <li><%= error.message %></li>
-            <% }) %> <% } %>
+        <% if (typeof errors !='undefined' ) { %>
+            <% errors.forEach(error=> { %>
+                <li>
+                    <%= error.message %>
+                </li>
+                <% }) %>
+                    <% } %>
     </ul>
 
     <form action="/signup" method="POST">
         <div>
-            <input type="text" id="firstname" name="name" placeholder="First name" required>
+            <input type="text" id="firstname" name="first_name" placeholder="First name" required>
         </div>
         <div>
-            <input type="text" id="lastname" name="surname" placeholder="Last name" required>
+            <input type="text" id="lastname" name="surname" placeholder="Surname" required>
         </div>
         <div>
             <input type="email" id="email" name="email" placeholder="Email" required>
@@ -26,6 +37,7 @@
         <div>
             <input type="submit" value="Register">
         </div>
-        <p>Already registered!<a href="/login">Login here</a></p>
+        <p>Already registered?<a href="/login">Login here</a></p>
 
     </form>
+</div>

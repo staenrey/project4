@@ -1,52 +1,70 @@
-<h1>Schedule management</h1>
-
-<div class="two-sections">
-
-    <div class="section_left">
-
-        <h3>
-            User profile
-        </h3>
-
-        <form class="add-form" method="POST" action="/new">
-    
-Here be user profile info
-
-            <ul>
-                <li>First Name: <%= schedules[0].first_name %></li>
-                <li>Last Name: <%= schedules[0].surname %></li>
-                <li>Email: <%= schedules[0].email %></li>
-            </ul>
-
+<header>
+    <div class="header-left">
+        <img class="header-logo" src="/static/full_logo_white.png" alt="Mr. Coffee Logo">
     </div>
+    <nav class="top-navigation">
+        <a href="/">Home</a>
+        <a href="/addschedule">Schedule management</a>
+        <button class="normal-button">Log out</button>
+    </nav>
+</header>
 
-    <div class="section-right">
+<div class="main-wrapper">
 
-        <h3>
-            Existing schedules
-        </h3>
+    <h1>Employee page</h1>
 
-        here will be all user's schedules
+    <div class="two-sections">
 
-        <% if (schedules[0].day_of_week === null) { %>
-            <p>This user has no schedules</p>
-        <% } else { %>
-            <table>
-                <tr>
-                    <td>Day</td>
-                    <td>Start Time</td>
-                    <td>End Time</td>
-                </tr>
-                <% for (i = 0; i < schedules.length; i++) { %>
-                    <tr>
-                        <td><%= schedules[i].day_of_week %></td>
-                        <td><%= schedules[i].start_time %></td>
-                        <td><%= schedules[i].end_time %></td>
-                    </tr>
-                <% } %>
-            </table>
-        <% } %>
-        
+        <div class="section_left">
 
+            <h3>
+                User profile
+            </h3>
+
+            <form class="add-form" method="POST" action="/new">
+                <ul>
+                    <li>First Name: <%= schedules[0].first_name %>
+                    </li>
+                    <li>Last Name: <%= schedules[0].surname %>
+                    </li>
+                    <li>Email: <%= schedules[0].email %>
+                    </li>
+                </ul>
+
+        </div>
+
+        <div class="section-right">
+
+            <h3>
+                Existing schedules
+            </h3>
+
+            <% if (schedules[0].day_of_week===null) { %>
+                <p>This user has no schedules</p>
+                <% } else { %>
+                    <table>
+                        <tr>
+                            <td>Day</td>
+                            <td>Start Time</td>
+                            <td>End Time</td>
+                        </tr>
+                        <% for (i=0; i < schedules.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <%= schedules[i].day_of_week %>
+                                </td>
+                                <td>
+                                    <%= schedules[i].start_time %>
+                                </td>
+                                <td>
+                                    <%= schedules[i].end_time %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </table>
+                    <% } %>
+
+
+        </div>
     </div>
 </div>

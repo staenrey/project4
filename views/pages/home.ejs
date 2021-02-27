@@ -1,16 +1,39 @@
+<header>
+    <div class="header-left">
+        <img class="header-logo" src="/static/full_logo_white.png" alt="Mr. Coffee Logo">
+    </div>
+    <nav class="top-navigation">
+        <a href="/">Home</a>
+        <a href="/addschedule">Schedule management</a>
+        <form action="/logout" method="POST">
+            <input type="submit" class="normal-button" value="Log out"></input>
+        </form>
+    </nav>
+</header>
 
-<h1>All schedules</h1>
+<div class="main-wrapper">
 
-<ul>
-    <% for (let i = 0; i < schedules.length; i++) { %>
-        <li>
-            <%=  %>
-            <a href="/employee/<%= schedules[i].user_id %>"><%= schedules[i].first_name + " " + schedules[i].surname %></a>
-            <%= weekDays[schedules[i].day_of_week - 1] %>
-            <%= schedules[i].start_time %>
-            &ndash;
-            <%= schedules[i].end_time %>
-        </li>
+    <h1>All schedules</h1>
 
-    <% } %>
-</ul>
+    <h2>
+        <%= userId ? "YOU ARE logged IN!!" : "logged OUT OUT OUT" %>
+    </h2>
+
+    <ul>
+        <% for (let i=0; i < schedules.length; i++) { %>
+
+            <li>
+
+                <a href="/employee/<%= schedules[i].user_id %>">
+                    <%= schedules[i].first_name + " " + schedules[i].surname %>
+                </a>
+                <%= weekDays[schedules[i].day_of_week - 1] %>
+                    <%= schedules[i].start_time %>
+                        &ndash;
+                        <%= schedules[i].end_time %>
+            </li>
+
+            <% } %>
+    </ul>
+
+</div>
