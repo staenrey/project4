@@ -55,6 +55,7 @@ function hashPassword(password) {
 app.use((req, res, next) => {
   const userId = req.session.userId
   if (userId) {
+    // database.one("SELECT * FROM users WHERE id = $1;", userId)
     database.one("SELECT * FROM users WHERE id = $1;", userId)
       .then((current_user) => {
         res.locals.current_user = current_user
@@ -147,7 +148,7 @@ app.post("/logout", redirectLogin, (req, res) => {
 
 // 4) employee page
 app.get("/employee/:userId(\\d+)", redirectLogin, (req, res) => { // To have more control over the exact string that can be matched by a route parameter, you can append a regular expression in parentheses (())
-  database.any(`SELECT * FROM users LEFT JOIN schedules ON schedules.user_id = users.id WHERE users.id = $1;`, [req.params.userId], profile => {
+  database.any("SELECT * FROM users LEFT JOIN schedules ON schedules.user_id = users.id WHERE users.id = $1;", [req.params.userId], profile => {
 
   }) // use $1 to ensure that req.params.userId is an integer (prevents sql injection)
     .then((user_profile) => {
@@ -163,7 +164,14 @@ app.get("/employee/:userId(\\d+)", redirectLogin, (req, res) => { // To have mor
 app.get("/addschedule", redirectLogin, (req, res) => {
   const current_user = res.locals.current_user
 
-  res.render("pages/addschedule", { current_user: current_user })
+  database.any("SELECT * FROM users LEFT JOIN schedules ON schedules.user_id = users.id WHERE users.id = $1;", [current_user.id]) // query list of user's schedule from current_user.id
+  .then((user_schedule) => {
+    res.render("pages/addschedule", { current_user: current_user, user_schedule: user_schedule, weekDays: utils.weekDays })
+  })
+  .catch(error => {
+    res.send({ error: error, stack: error.stack })
+    console.log("Error:", error) // added a console log to get specific error message
+  })
 })
 
 // 6) signup

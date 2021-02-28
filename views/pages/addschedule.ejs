@@ -61,6 +61,32 @@
             </h3>
 
             here will be all user's schedules
+
+            <% if (user_schedule[0].day_of_week===null) { %>
+                <p>This user has no schedules</p>
+                <% } else { %>
+                    <table>
+                        <tr>
+                            <td>Day</td>
+                            <td>Start Time</td>
+                            <td>End Time</td>
+                        </tr>
+                        <% for (i=0; i < user_schedule.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <%= weekDays[user_schedule[i].day_of_week] %>
+                                </td>
+                                <td>
+                                    <%= user_schedule[i].start_time %>
+                                </td>
+                                <td>
+                                    <%= user_schedule[i].end_time %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </table>
+                    <% } %>
+
         </div>
     </div>
 </div>
