@@ -174,6 +174,21 @@ app.get("/addschedule", redirectLogin, (req, res) => {
   })
 })
 
+// 5) POST: schedule management - adding new schedule for logged in user
+app.post("/addschedule", redirectLogin, (req, res) => {
+
+  const { user_id, day_of_week, start_time, end_time} = req.body;
+
+  database.none("INSERT INTO schedules(user_id, day_of_week, start_time, end_time) VALUES ($1, $2, $3, $4);", [user_id, day_of_week, start_time, end_time])
+  .then(() => {
+    res.redirect("/addschedule")
+  })
+  .catch(error => {
+    res.send({ error: error, stack: error.stack })
+    console.log("Error:", error) // added a console log to get specific error message
+  })
+})
+
 // 6) signup
 app.get("/signup", redirectHome, (req, res) => {
   res.render("pages/signup")
