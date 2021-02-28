@@ -21,18 +21,20 @@
                 Add new schedule
             </h3>
 
-            <form class="add-form" method="POST" action="/new">
+            <form class="add-form" method="POST" action="/addschedule">
+
+                <!-- <input type="hidden" name="user_id" value="<%= current_user.id %>"> -->
 
                 <label>
                     Day of the week *
-                    <select name="day_of_week" required>
-                        <option value=1>Monday</option>
-                        <option value=2>Tuesday</option>
-                        <option value=3>Wednesday</option>
-                        <option value=4>Thursday</option>
-                        <option value=5>Friday</option>
-                        <option value=6>Saturday</option>
-                        <option value=7>Sunday</option>
+                    <select type="number" name="day_of_week" value="" required>
+                        <option type="number" value="1">Monday</option>
+                        <option type="number" value="2">Tuesday</option>
+                        <option type="number" value="3">Wednesday</option>
+                        <option type="number" value="4">Thursday</option>
+                        <option type="number" value="5">Friday</option>
+                        <option type="number" value="6">Saturday</option>
+                        <option type="number" value="7">Sunday</option>
                     </select>
                 </label>
 
