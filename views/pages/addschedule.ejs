@@ -36,18 +36,15 @@
                     </select>
                 </label>
 
-
                 <label>
                     Start at *
                     <input type="time" name="start_time" required>
                 </label>
 
-
                 <label>
                     End at *
                     <input type="time" name="end_time" required>
                 </label>
-
 
                 <input type="submit" value="Submit">
 
@@ -74,7 +71,7 @@
                         <% for (i=0; i < user_schedule.length; i++) { %>
                             <tr>
                                 <td>
-                                    <%= weekDays[user_schedule[i].day_of_week] %>
+                                    <%= weekDays[user_schedule[i].day_of_week - 1] %>
                                 </td>
                                 <td>
                                     <%= user_schedule[i].start_time %>
