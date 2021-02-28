@@ -177,9 +177,10 @@ app.get("/addschedule", redirectLogin, (req, res) => {
 // 5) POST: schedule management - adding new schedule for logged in user
 app.post("/addschedule", redirectLogin, (req, res) => {
 
-  const { user_id, day_of_week, start_time, end_time} = req.body;
+  const current_user = res.locals.current_user // to be stored as user_id in the schedules table.
+  const {day_of_week, start_time, end_time} = req.body
 
-  database.none("INSERT INTO schedules(user_id, day_of_week, start_time, end_time) VALUES ($1, $2, $3, $4);", [user_id, day_of_week, start_time, end_time])
+  database.none("INSERT INTO schedules(user_id, day_of_week, start_time, end_time) VALUES ($1, $2, $3, $4);", [current_user.id, day_of_week, start_time, end_time])
   .then(() => {
     res.redirect("/addschedule")
   })
