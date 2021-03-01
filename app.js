@@ -112,27 +112,58 @@ app.get("/", redirectLogin, (req, res) => {
 
 // 2) login
 app.get("/login", redirectHome, (req, res) => {
+  let error = req.body.error // this receives the value of "error" from line 146
+  
+  // the error is then passed through to the login page display as it is reloaded.
+  if (error === undefined) {
+    res.render('pages/login', {
+      error: undefined
+    })
+  } else {
+    res.render('pages/login', {
+      error: error
+    })
+  }
+  
   // req.session.userId = 
-  res.render("pages/login")
+  // res.render("pages/login")
 })
 
 app.post("/login", redirectHome, (req, res) => {
   const { email, password } = req.body
 
   if (email && password) {
-
     database.one("SELECT * FROM users WHERE email = $1 AND password = $2;", [email, hashPassword(password)])
 
       .then((current_user) => {
         req.session.userId = current_user.id
         res.redirect("/")
       })
-      .catch(() => {
-        res.redirect("/login")
+      .catch((err) => {
+        if(err.message === "No data returned from the query.") {
+          // If email/password does not match, return login page with the following error message below
+          // res.render('pages/login', {
+          //   error: "Invalid user credentials"
+          // })
+
+          // If a separate error message is preferred, use the code below
+          res.render('pages/error', {
+            err: {
+              message: "Invalid user credentials"
+            }
+          })
+        } else {
+          // Placeholder error handler - not vital to the solution but needed to execute.
+          res.render('pages/error', {
+            err: err
+          })
+        }
       })
   } else {
     res.redirect("/login")
   }
+
+
 })
 
 // 3) logout route (no page)
@@ -146,7 +177,7 @@ app.post("/logout", redirectLogin, (req, res) => {
 
 })
 
-// 4) employee page
+// 4) GET: employee page
 app.get("/employee/:userId(\\d+)", redirectLogin, (req, res) => { // To have more control over the exact string that can be matched by a route parameter, you can append a regular expression in parentheses (())
   database.any("SELECT * FROM users LEFT JOIN schedules ON schedules.user_id = users.id WHERE users.id = $1;", [req.params.userId], profile => {
 
@@ -160,7 +191,7 @@ app.get("/employee/:userId(\\d+)", redirectLogin, (req, res) => { // To have mor
     })
 })
 
-// 5) schedule management
+// 5) GET: schedule management
 app.get("/addschedule", redirectLogin, (req, res) => {
   const current_user = res.locals.current_user
 
