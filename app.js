@@ -165,29 +165,29 @@ app.get("/addschedule", redirectLogin, (req, res) => {
   const current_user = res.locals.current_user
 
   database.any("SELECT * FROM users LEFT JOIN schedules ON schedules.user_id = users.id WHERE users.id = $1;", [current_user.id]) // query list of user's schedule from current_user.id
-  .then((user_schedule) => {
-    res.render("pages/addschedule", { current_user: current_user, user_schedule: user_schedule, weekDays: utils.weekDays })
-  })
-  .catch(error => {
-    res.send({ error: error, stack: error.stack })
-    console.log("Error:", error) // added a console log to get specific error message
-  })
+    .then((user_schedule) => {
+      res.render("pages/addschedule", { current_user: current_user, user_schedule: user_schedule, weekDays: utils.weekDays })
+    })
+    .catch(error => {
+      res.send({ error: error, stack: error.stack })
+      console.log("Error:", error) // added a console log to get specific error message
+    })
 })
 
 // 5) POST: schedule management - adding new schedule for logged in user
 app.post("/addschedule", redirectLogin, (req, res) => {
 
   const current_user = res.locals.current_user // to be stored as user_id in the schedules table.
-  const {day_of_week, start_time, end_time} = req.body
+  const { day_of_week, start_time, end_time } = req.body
 
   database.none("INSERT INTO schedules(user_id, day_of_week, start_time, end_time) VALUES ($1, $2, $3, $4);", [current_user.id, day_of_week, start_time, end_time])
-  .then(() => {
-    res.redirect("/addschedule")
-  })
-  .catch(error => {
-    res.send({ error: error, stack: error.stack })
-    console.log("Error:", error) // added a console log to get specific error message
-  })
+    .then(() => {
+      res.redirect("/addschedule")
+    })
+    .catch(error => {
+      res.send({ error: error, stack: error.stack })
+      console.log("Error:", error) // added a console log to get specific error message
+    })
 })
 
 // 6) signup
@@ -198,39 +198,33 @@ app.get("/signup", redirectHome, (req, res) => {
 // form validation
 //  { id: 1, surname: "Aringay", first_name: "Jake", email: 
 
-app.post("/signup", redirectHome, async (req, res) => {
+app.post("/signup", redirectHome, async (req, res) => { // NB!! this ASYNC is for using await, see "checking if the same email already exists in the database" below
 
   const { first_name, surname, email, password, password2 } = req.body;
 
-  console.log({ first_name, surname, email, password, password2 });
-
   let errors = [];
+
+  // checking if the form is filled correctly
 
   if (!first_name || !surname || !email || !password || !password2) {
     errors.push({ message: "Please enter all fields" });
   }
-
   if (password.length < 6) {
     errors.push({ message: "Password should be at least 6 characters" });
   }
-
   if (password != password2) {
     errors.push({ message: "Passwords do not match!" });
   }
 
+  // checking if the same email already exists in the database
 
-  /* WILL DO ON SUNDAY
-  
-    database.any("SELECT * FROM users WHERE email = $1;", email)
-    const exists = users.some( //addDB
-      user => user.email === email
-    )
-  
-    if (exists) {
-      errors.push({ message: "User with this email is already registered!" });
-    }
-  
-    */
+  const users_with_same_emails = await database.any("SELECT * FROM users WHERE email = $1;", email)
+
+  if (users_with_same_emails.length > 0) {
+    errors.push({ message: "User with this email is already registered!" });
+  }
+
+  // end of check
 
   if (errors.length > 0) {
     res.render("pages/signup", { errors });
